@@ -13,7 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.11]
@@ -38,7 +38,7 @@ jobs:
         
   publish:
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # Specifying a GitHub environment is optional, but strongly encouraged
     environment: release
     permissions:
