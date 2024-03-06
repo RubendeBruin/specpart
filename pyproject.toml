@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "specpart"
-version = "0.0.2"
+version = "0.0.3"
 description = "specpart module for use in wavespectra"
 readme = "README.md"
 license = { file = "LICENSE.txt" }
