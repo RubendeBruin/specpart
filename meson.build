@@ -1,4 +1,4 @@
-project('specpart', 'fortran')
+project('specpart', 'c')
 
 add_languages('fortran')
 
