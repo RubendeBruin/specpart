@@ -4,7 +4,7 @@ build-backend = "mesonpy"
 
 [project]
 name = "specpart"
-version = "0.0.5"
+version = "0.0.6"
 description = "specpart module for use in wavespectra"
 readme = "README.md"
 license = { file = "LICENSE.txt" }
