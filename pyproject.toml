@@ -29,7 +29,8 @@ dependencies = [
     "numpy",
 ]
 
-
+[tool.setuptools.package-data]
+"specpart" = ["specpart.f90", "specpart.pyf"]
 
 
 [project.urls]
