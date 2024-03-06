@@ -1,6 +1,4 @@
-project('specpart', 'c', default_options : ['default_library=static'])
-
-prefer_static
+project('specpart', 'c', default_options : ['default_library=static','default_library=static'])
 
 add_languages('fortran')
 
