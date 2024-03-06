@@ -5,11 +5,9 @@
       
       subroutine f2pyinitspecpart(f2pysetupfunc)
       use specpart, only : ihmax
-      use specpart, only : npart
-      use specpart, only : partinit
       use specpart, only : partition
       external f2pysetupfunc
-      call f2pysetupfunc(ihmax,npart,partinit,partition)
+      call f2pysetupfunc(ihmax,partition)
       end subroutine f2pyinitspecpart
 
 
