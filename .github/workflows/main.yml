@@ -26,11 +26,10 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y gfortran ninja-build
-        pip install meson
+        pip install build
     - name: Build package
       run: |
-        meson setup builddir
-        meson compile -C builddir
+        python -m build
     - name: Upload package to artifacts
       uses: actions/upload-artifact@v2
       with:
