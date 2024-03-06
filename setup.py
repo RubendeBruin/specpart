@@ -8,6 +8,7 @@ setup(
             name='specpart',
             sources=[
                 "src/specpart/specpart.f90",
+                "src/specpart/specpart.pyf",
             ]
         )
     ]
