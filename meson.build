@@ -1,4 +1,4 @@
-project('specpart', 'c', default_options : ['prefer_static=true','default_library=static'])
+project('specpart', 'c', default_options : ['default_library=static'])
 
 prefer_static
 
