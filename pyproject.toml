@@ -1,6 +1,6 @@
 [build-system]
-requires = ["numpy","setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["mesonpy"]
+build-backend = "meson-python"
 
 [project]
 name = "specpart"
@@ -25,13 +25,6 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.8,<3.12"
-dependencies = [
-    "numpy",
-]
-
-[tool.setuptools.package-data]
-"specpart" = ["specpart.f90", "specpart.pyf"]
-
 
 [project.urls]
 Homepage = "https://github.com/RubendeBruin/specpart"

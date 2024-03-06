@@ -1,5 +1,9 @@
 project('specpart', 'fortran')
-py3_mod = import('python').find_installation('python3')
-py3_mod.extension_module('specpart', 'specpart.f90',
-  install : true,
-  subdir : py3_mod.get_path('purelib'))
+
+py = import('python').find_installation(pure: false)
+
+py.extension_module(
+    'specpart',
+    'specpart.f90',
+    install : true,
+  )
