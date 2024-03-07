@@ -8,27 +8,13 @@ The specpart fortran code - under construction
 - used `python -m build` to build the package
 - used Github Actions to perform the actual build on windows
 - workflow runs fine
-- created wheel (in the artifacts)
+- created wheel 
+- use delvewheel to inspect and repair created wheels. This includes all the required .dll files in the wheel
+- delvewheel stores the repaired wheel in the /wheelhouse folder, this is uploaded as artifact.
 - download the wheel and install it using pip
-- FAILS WITH:
+- Works, but the required `partition` function is not available in the module.
 ```
-(work11) C:\data\python>pip install specpart-0.0.6-cp311-cp311-win_amd64.whl --force-reinstall
-Processing c:\data\python\specpart-0.0.6-cp311-cp311-win_amd64.whl
-Installing collected packages: specpart
-  Attempting uninstall: specpart
-    Found existing installation: specpart 0.0.6
-    Uninstalling specpart-0.0.6:
-      Successfully uninstalled specpart-0.0.6
-Successfully installed specpart-0.0.6
 
-(work11) C:\data\python>python
-Python 3.11.3 (tags/v3.11.3:f3909b8, Apr  4 2023, 23:49:59) [MSC v.1934 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license" for more information.
->>> import specpart
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-ImportError: DLL load failed while importing specpart: The specified module could not be found.
->>>
 ```
 
 Note:
