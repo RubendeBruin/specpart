@@ -40,7 +40,7 @@ jobs:
     - name: Repair
       run: |
         ls -s
-        python -m delvewheel repair -v ./dist/*.whl
+        python -m delvewheel repair -v D:\a\specpart\specpart\dist\specpart-0.0.6-cp311-cp311-win_amd64.whl
     - name: Upload package to artifacts
       uses: actions/upload-artifact@v2
       with:
