@@ -42,9 +42,7 @@ jobs:
         ls -s
         cd dist
         python -m delvewheel repair -v D:\a\specpart\specpart\dist\specpart-0.0.6-cp311-cp311-win_amd64.whl
-        python -m delvewheel repair -v D:\a\specpart\specpart\dist\*.whl
-        python -m delvewheel repair -v *.whl
-        dir
+        ls -s
     - name: Upload package to artifacts
       uses: actions/upload-artifact@v2
       with:
