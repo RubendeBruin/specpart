@@ -39,7 +39,8 @@ jobs:
         python -m build
     - name: Repair
       run: |
-        delvewheel repair -v dist/*
+        ls -l
+        python -m delvewheel repair -v ./dist/*.whl
     - name: Upload package to artifacts
       uses: actions/upload-artifact@v2
       with:
