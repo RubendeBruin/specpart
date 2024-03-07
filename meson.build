@@ -27,5 +27,6 @@ py.extension_module(
     incdir_f2py / 'fortranobject.c',
     include_directories: inc_np,
     dependencies : py_dep,
-    install : true
+    install : true,
+    link_language: 'fortran'
 )
