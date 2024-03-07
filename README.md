@@ -12,10 +12,36 @@ The specpart fortran code - under construction
 - use delvewheel to inspect and repair created wheels. This includes all the required .dll files in the wheel
 - delvewheel stores the repaired wheel in the /wheelhouse folder, this is uploaded as artifact.
 - download the wheel and install it using pip
-- Works, but the required `partition` function is not available in the module.
+- Importing works,
+- but the required `partition` function is not available in the module.
+- 
+```
+(work11) C:\python\venvs\work11\Lib\site-packages>python
+Python 3.11.3 (tags/v3.11.3:f3909b8, Apr  4 2023, 23:49:59) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import specpart
+>>> specpart
+<module 'specpart' from 'C:\\python\\venvs\\work11\\Lib\\site-packages\\specpart.cp311-win_amd64.pyd'>
+>>> specpart.partition()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'specpart' has no attribute 'partition'
 ```
 
+Which is "strange" as the `pyf` file contains:
+```fortran
+subroutine partition(spec,ipart,nk,nth) ! in :specpart:specpart.f90:specpart
 ```
+
+**Is there some backwards compatibility issue with the .pyf file?**
+
+- re-createing the pyf file does not result in a very different pyf file
+- re-creating the .c file based on the f90 file **does** result in a different .c file. 
+
+
+
+
+
 
 Note:
 - re-creating the .pyf file or generating the wrapper using the .f90 file results in a wrapper that fails to compile.
