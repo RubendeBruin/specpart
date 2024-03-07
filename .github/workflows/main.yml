@@ -33,9 +33,13 @@ jobs:
         choco install mingw
         choco install ninja
         pip install build
+        pip install delvewheel
     - name: Build package
       run: |
         python -m build
+    - name: Repair
+      run: |
+        delvewheel repair -v dist/*
     - name: Upload package to artifacts
       uses: actions/upload-artifact@v2
       with:
