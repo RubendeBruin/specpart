@@ -123,6 +123,57 @@ Error: Symbol 'ptsort' referenced at (1) not found in module 'specpart'
 
 **If not included**
 
+Fails with undefined reference to `f2pyinitspecpart_'` error:
+
+```commandline
+[5/5] Linking target specpart.cp311-win_amd64.pyd
+FAILED: specpart.cp311-win_amd64.pyd 
+"gcc"  -o specpart.cp311-win_amd64.pyd specpart.cp311-win_amd64.pyd.p/specpart.f90.obj specpart.cp311-win_amd64.pyd.p/specpartmodule.c.obj specpart.cp311-win_amd64.pyd.p/d05849f063a8207084c7a3499469aa652b53c914_site-packages_numpy_f2py_src_fortranobject.c.obj "-LC:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0" "-LC:/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0" "-LC:/mingw64/bin/../lib/gcc" "-LC:/mingw64/lib/gcc" "-LC:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib/../lib" "-LC:/mingw64/x86_64-w64-mingw32/lib" "-LC:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../lib" "-LC:/mingw64/lib" "-LC:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/lib" "-LC:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../.." "-Wl,--allow-shlib-undefined" "-Wl,-O1" "-shared" "-Wl,--start-group" "-Wl,--out-implib=specpart.cp311-win_amd64.dll.a" "C:\hostedtoolcache\windows\Python\3.11.8\x64\python311.dll" "-lkernel32" "-luser32" "-lgdi32" "-lwinspool" "-lshell32" "-lole32" "-loleaut32" "-luuid" "-lcomdlg32" "-ladvapi32" "-lgfortran" "-lm" "-Wl,--end-group"
+C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: specpart.cp311-win_amd64.pyd.p/specpartmodule.c.obj:specpartmodule:(.text+0x58): undefined reference to `f2pyinitspecpart_'
+```
+
+That makes sense as 
+`f2pyinitspecpart` is defined as an external function in the specpartmodule.c file:
+
+```extern void F_FUNC(f2pyinitspecpart,F2PYINITSPECPART)(void (*)(char*,char*,char *,char *,char *,char *,char *));``` 
+
+but is defined in the `specpart-f2pywrappers2.f90` file:
+
+## Use the pre-existing specpart.pyf file
+
+Generate wrapper using the pre-exising .pyf file:
+
+```commandline
+python -m numpy.f2py specpart.pyf -m specpart
+```
+
+output:
+
+```
+Reading fortran codes...
+	Reading file 'specpart.pyf' (format:free)
+Post-processing...
+	Block: specpart
+			Block: specpart
+					Block: specpart
+						Block: partition
+Applying post-processing hooks...
+  character_backward_compatibility_hook
+Post-processing (stage 2)...
+	Block: specpart
+Building modules...
+    Building module "specpart"...
+		Constructing F90 module support for "specpart"...
+		  Variables: ihmax
+            Constructing wrapper function "specpart.partition"...
+              ipart = partition(spec)
+    Wrote C/API module "specpart" to file ".\specpartmodule.c"
+    Fortran 90 wrappers are saved to ".\specpart-f2pywrappers2.f90"
+    Building module "specpart"...
+    Wrote C/API module "specpart" to file ".\specpartmodule.c"
+```
+
+This creates a much shorter .f90 file.
 
 ## Links
 https://rgoswami.me/posts/numpy-meson-f2py/
