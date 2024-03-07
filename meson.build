@@ -22,7 +22,7 @@ py.extension_module(
     'specpart',
     ['specpart.f90',
     'specpartmodule.c',
-    'specpart-f2pywrappers.f90'
+    'specpart-f2pywrappers2.f90'
     ],
     incdir_f2py / 'fortranobject.c',
     include_directories: inc_np,
