@@ -20,9 +20,8 @@ inc_np = include_directories(incdir_numpy, incdir_f2py)
 
 py.extension_module(
     'specpart',
-    ['specpart.f90',
+    'specpart.f90',
     'specpartmodule.c',
-    'specpart-f2pywrappers2.f90'],
     incdir_f2py / 'fortranobject.c',
     include_directories: inc_np,
     dependencies : py_dep,
