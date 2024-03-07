@@ -8,9 +8,6 @@
       use specpart, only : npart
       use specpart, only : partinit
       use specpart, only : partition
-      use specpart, only : ptsort
-      use specpart, only : ptnghb
-      use specpart, only : pt_fld
       external f2pysetupfunc
       call f2pysetupfunc(ihmax,npart,partinit,partition,ptsort,ptnghb,pt&
      &_fld)
